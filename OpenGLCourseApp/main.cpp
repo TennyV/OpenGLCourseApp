@@ -2,6 +2,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+using namespace std;
+
 
 // window dimensions
 const GLint WIDTH = 800, HEIGHT = 600;
@@ -25,14 +27,16 @@ int main()
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); // set major version to 3
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3); // set minor version to 3
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_ANY_PROFILE); // how to treat the core profile... don't use deprecated versions
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // how to treat the core profile... don't use deprecated versions
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // allowing forward compatibility
 
 	//create window     // glfwCreateWindow function is built in
-	GLFWwindow* mainWindow = glfwCreateWindow(WIDTH, HEIGHT, "Test Window", NULL, NULL);
+	GLFWwindow* mainWindow = glfwCreateWindow(WIDTH, HEIGHT, "Window", NULL, NULL);
+	
 	if (!mainWindow)
 	{
 		printf("GLFW window creation failed!");
+		glfwTerminate();
 		return 1;
 	}
 
@@ -63,7 +67,7 @@ int main()
 
 	// loop unitl window closed
 
-	while (!glfwWindowShouldClose(mainWindow));  // specify which window
+	while (!glfwWindowShouldClose(mainWindow))  // specify which window
 	{
 		// Get + handle user input events
 		glfwPollEvents();  // GLFW feature
